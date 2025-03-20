@@ -1,0 +1,47 @@
+Here are some notes on tools used for e-mails scraping from clutch and generating mailing lists for MailMerge Thunderbird extension
+
+The flow is as follows:
+
+1) Generating clutch.com/profile/blah -like urls list
+
+We open clutch.co with some list of companies, like: https://clutch.co/web-developers?geona_id=40823 in the browser. This list contains links to clutch profile pages, like https://clutch.co/profile/gecko-lab
+
+I haven't found any way of getting "normal" webpages' urls for companies, but it's possible to make a list of those profile pages. You can then copy them to "Firmy z clutcha" sheet and work with such list.
+
+In order to create such a list, copy the contents (source) of the clutch page aforementioned (one with list, /web-developers?geona_id=40823) and paste it to some file (dupa.html). Then call:
+./list_clutch_addresses.sh path_to_file.txt
+There are some old pages I've used on this repo, so call ./list_clutch_addresses.sh Archives/OldClutchPages/page20.txt to understand what you should see.
+
+You paste it to "Clutch" column in the "Firmy developerskie" doc
+
+You can now select them and open in background tabs (select multiple, right click, "Zobacz więcej czynności..., Otwórz linki").
+
+It opens _clutch_ pages for subsequent companies in tabs, so you can open companies' pages by clicking the companies' names and use a plugin to look for e-mails
+
+Here is plugin:
+
+https://chromewebstore.google.com/detail/email-extractor/jdianbbpnakhcmfkcckaboohfgnngfcc
+
+2) Generating csv for MailMerge
+
+Batch e-mailing is done using the MailMerge addon for Thunderbird.
+
+Copy mails from a column (with Shift or Ctrl/Command) OR copy both companies names and e-mails (they have to be in the same appropriate rows and number of companies has to be equal to the number of e-mails) (with Ctrl/Command) if the desired mail template has a placeholder for company name (as {{LastName}} )
+
+Run ./create_a_csv_for_copied.rb - it uses the data in clipboard and generates .csv file (shown as output and also copied to clipboard)
+
+Companies' names are in the "LastName" column, so that they could be used with MailMerge. Details on how to use should appear when running the script.
+
+
+3) Run MailMerge with appropriate template.
+
+In "To" field put:
+{{Email}}
+
+If you want to use a template with company name, use {{LastName}} as a placeholder.
+
+I usually add my personal e-mail with some test company name as a first item in the csv, to test whether everything's ok.
+
+Click the "Mail Merge" icon in the message window, set the source to CSV, set file to the appropriate csv. Leave charset and separator as defaults.
+
+Set Pause value to 1200 and select Random - this should give frequency of 1 e-mail per 10 minutes, on average: the delay is in seconds, and the random is distributed uniformly, so the average value is 600s => 10 min.
