@@ -45,3 +45,41 @@ I usually add my personal e-mail with some test company name as a first item in 
 Click the "Mail Merge" icon in the message window, set the source to CSV, set file to the appropriate csv. Leave charset and separator as defaults.
 
 Set Pause value to 1200 and select Random - this should give frequency of 1 e-mail per 10 minutes, on average: the delay is in seconds, and the random is distributed uniformly, so the average value is 600s => 10 min.
+
+4) Other hacks:
+
+There is one problem with Thunderbird + MailMerge: as far as I understand, it can be only configured as one sender identity (address). And I haven't found any reasonable way to run mutiple instances of Thunderbird on MacOS.
+
+At first, I was using virtual machines (VirtualBox and then UTM) with Linux, with Thunderbird and MailMerge on each one. But they're both heavy (distro has to have GUI for running Thunderbird) and unreliable (for some reason network connection seems to fail after a few hours). 
+
+Tl;dr:
+
+The solution I've found is to use Thunderbird _docker image_:
+
+https://github.com/jlesage/docker-thunderbird
+
+You run as many containers as you want with this guy, it's possible to download MailMerge via Thunderbird plugin manager. The Thunderbird is accessible via web browser, as localhost:PORT_NUMBER
+
+It's quite light and very stable. The initial installation took me a few minutes, but I guess I'm not familiar with docker.
+
+The only caveat is that you have to map each one to different port, so after running, for instance, the first one on 5800
+
+/Applications/Docker.app/Contents/Resources/bin/docker run -d \
+    --name=thunderbird2 \
+        -p 5800:5800 \
+            -v ~/DockerThunderbird/dockershared2:/config:rw \
+                jlesage/thunderbird
+
+... the subsequent ones look like this:
+
+
+/Applications/Docker.app/Contents/Resources/bin/docker run -d \
+    --name=thunderbird3 \
+        -p 5801:5800 \
+            -v ~/DockerThunderbird/dockershared3:/config:rw \
+                jlesage/thunderbird
+
+The first one can be accessed in your web browser at localhost:5800, the second one as localhost:5801 etc.
+
+You provide .csv for MailMerge by putting it in ~/DockerThunderbird/dockershared[number] directory (I mean arbitrary, specified as a param -v above).
+
