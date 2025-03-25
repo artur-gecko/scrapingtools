@@ -9,9 +9,11 @@ else
   File.open(filename).each_line do |line|
     #puts content.read()
     #puts content.read().grep(/^http/)#bad
-    if(line.match(/^*http/))
-	puts "!!\n\n\n" + line
+   thematch = line.match(/.*https:\/\/clutch\.co\/profile\/([a-zA-Z0-9-]*)\"\s/)
+    
+    if(line.match(/.*https:\/\/clutch\.co\/profile\/([a-zA-Z0-9-]*)\"\s/))
+      puts "https://clutch.co/profile/"+thematch[1]
     end
-end    
     #puts content.read().scan 'http*'
+end
 end
