@@ -3,7 +3,6 @@ Here are some notes on tools used for e-mails scraping from clutch and generatin
 The flow is as follows:
 
 1) Generating clutch.com/profile/blah -like urls list
-
 We open clutch.co with some list of companies, like: https://clutch.co/web-developers?geona_id=40823 in the browser. This list contains links to clutch profile pages, like https://clutch.co/profile/gecko-lab
 
 I haven't found any way of getting "normal" webpages' urls for companies, but it's possible to make a list of those profile pages. You can then copy them to "Firmy z clutcha" sheet and work with such list.
@@ -42,11 +41,13 @@ If you want to use a template with company name, use {{LastName}} as a placehold
 
 I usually add my personal e-mail with some test company name as a first item in the csv, to test whether everything's ok.
 
-Click the "Mail Merge" icon in the message window, set the source to CSV, set file to the appropriate csv. Leave charset and separator as defaults.
+Click the "Mail Merge" icon in the message window, set the source to CSV, set filt to the appropriate csv. Leave charset and separator as defaults.
 
-Set Pause value to 1200 and select Random - this should give frequency of 1 e-mail per 10 minutes, on average: the delay is in seconds, and the random is distributed uniformly, so the average value is 600s => 10 min.
+Set Pause value to 1200 and select Random - this should give frequency of 1 e-mail per 10 minutes, on average: the delay is in seconds, and the random is ditributed uniformly, so the average value is 600s => 10 min.
 
-4) Other hacks:
+4) Other hacks
+
+
 
 There is one problem with Thunderbird + MailMerge: as far as I understand, it can be only configured as one sender identity (address). And I haven't found any reasonable way to run mutiple instances of Thunderbird on MacOS.
 
@@ -82,4 +83,5 @@ The only caveat is that you have to map each one to different port, so after run
 The first one can be accessed in your web browser at localhost:5800, the second one as localhost:5801 etc.
 
 You provide .csv for MailMerge by putting it in ~/DockerThunderbird/dockershared[number] directory (I mean arbitrary, specified as a param -v above).
+
 
