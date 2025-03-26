@@ -47,8 +47,6 @@ Set Pause value to 1200 and select Random - this should give frequency of 1 e-ma
 
 4) Other hacks
 
-
-
 There is one problem with Thunderbird + MailMerge: as far as I understand, it can be only configured as one sender identity (address). And I haven't found any reasonable way to run mutiple instances of Thunderbird on MacOS.
 
 At first, I was using virtual machines (VirtualBox and then UTM) with Linux, with Thunderbird and MailMerge on each one. But they're both heavy (distro has to have GUI for running Thunderbird) and unreliable (for some reason network connection seems to fail after a few hours). 
