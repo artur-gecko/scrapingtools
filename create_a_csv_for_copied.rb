@@ -24,11 +24,17 @@ first_element_at_all = array[0].split("\t")[0]
 
 if first_element_at_all.include? "@"
   for i in 0..array.length-1 do
-      thestring+=",,,#{array[i].split("\t")[0]}\n"
+      thestring+=",,,#{array[i].split("\t")[0]}"
+      if i!=array.length-1 then
+	thestring+="\n"
+      end
   end
 else
   for i in 0..array.length-1 do
-    thestring+=",#{array[i].split("\t")[0]},,#{array[i].split("\t")[1]}\n"
+    thestring+=",#{array[i].split("\t")[0]},,#{array[i].split("\t")[1]}"
+    if i !=array.length-1 then
+        thestring+="\n"
+    end
   end
 end
 
