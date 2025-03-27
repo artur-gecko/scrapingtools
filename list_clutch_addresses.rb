@@ -6,6 +6,11 @@ else
 
   filename =  ARGV.first
   list_with_results = Array.new
+  blacklist = Array.new
+
+  File.open("blacklist.txt").each_line do |line|
+	blacklist << (""+line).strip
+  end
   File.open(filename).each_line do |line|
     #puts content.read()
     #puts content.read().grep(/^http/)#bad
@@ -14,10 +19,14 @@ else
     if(line.match(/.*https:\/\/clutch\.co\/profile\/([a-zA-Z0-9-]*)\"\s/))
       thematchstripped = thematch[1].strip
       concatenated = "https://clutch.co/profile/"+thematchstripped
-      list_with_results << concatenated
+	if not blacklist.include?concatenated
+      		list_with_results << concatenated
+	end
     end
 
     end
-
+#puts "Blacklist:"
+#puts blacklist.uniq
+#puts "--"
 puts list_with_results.uniq
 end
