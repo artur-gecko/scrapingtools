@@ -1,5 +1,5 @@
 #!/bin/zsh
-curl 'https://clutch.co/developers?page=4' \
+curl 'https://clutch.co/profile/got-it-agency' \
   -H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7' \
   -H 'accept-language: pl,en-GB;q=0.9,en;q=0.8,el;q=0.7,en-US;q=0.6' \
   -H 'cache-control: max-age=0' \

@@ -20,7 +20,7 @@ else
       thematchstripped = thematch[1].strip
       concatenated = "https://clutch.co/profile/"+thematchstripped
 	if not blacklist.include?concatenated
-      		list_with_results << concatenated
+      		list_with_results << (thematch[0])+"\t" +  concatenated
 	end
     end
 
