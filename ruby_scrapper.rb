@@ -25,7 +25,10 @@ html = driver.page_source
 #puts html
 loc_thematch = html.match(/locality.*/)[0][19..-3]
 #puts loc_thematch
-
+puts "TESTY"
+loc_thematch2 = html.match(/profile-modal--list\">(\s*<li>(.*\w*)*)+/)
+puts loc_thematch2
+puts "END"
 url_thematch = html.match(/.*sameAs.*/)[0].split("content=\"")[1][0...-2]
 #puts url_thematch
 
