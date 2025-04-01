@@ -1,5 +1,7 @@
 require "selenium-webdriver"
 
+# call sudo gem install selenium-webdriver before running
+
 # define the browser options
 options = Selenium::WebDriver::Chrome::Options.new
 # to run Chrome in headless mode
