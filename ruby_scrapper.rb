@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require "selenium-webdriver"
 
 # call sudo gem install selenium-webdriver before running
