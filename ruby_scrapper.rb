@@ -34,8 +34,10 @@ url_thematch = html.match(/.*sameAs.*/)[0].split("content=\"")[1][0...-2]
 
 name_match = html.match(/og:title\" content=\"[A-Za-z\-0-9].*"/)[0][19..-2]
 
-puts name_match+"\t"+loc_thematch+"\t"+url_thematch
-# close the browser and release its resources
+puts name_match+"\t"
+puts loc_thematch2
+puts"\t"+url_thematch
+#+ close the browser and release its resources
 driver.quit
 end
 end
