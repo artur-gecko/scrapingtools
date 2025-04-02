@@ -26,17 +26,27 @@ html = driver.page_source
 loc_thematch = html.match(/locality.*/)[0][19..-3]
 #puts loc_thematch
 puts "TESTY"
-loc_thematch2 = html.match(/profile-modal--list\">(\s*<li>(.*\w*)*)+/)
-puts loc_thematch2
-puts "END"
+loc_match2 = html.match(/profile-modal--list\">(\s*<li>(.*\w*)*)+/)
+#puts loc_thematch2
+if(loc_match2!=nil and loc_match2[0] != nil)
+loc_match_city_full = loc_match2[0].match(/<li>.*<span>/)
+loc_match_country_full = loc_match2[0].match(/span.*span/)
+end
+#if(loc_match_city_full[0] != nil)
+#puts "CITY_MATCH:"+loc_match_city_full[0][4..-8]+"+"
+#end
+#if(loc_match_country_full[0] !=nil)
+#puts "COUNTRY_MATCH:" + loc_match_country_full[0][7..-7]
+#end
+#puts "END"
 url_thematch = html.match(/.*sameAs.*/)[0].split("content=\"")[1][0...-2]
 #puts url_thematch
 
 name_match = html.match(/og:title\" content=\"[A-Za-z\-0-9].*"/)[0][19..-2]
 
-puts name_match+"\t"
-puts loc_thematch2
-puts"\t"+url_thematch
+puts "NAME_MATCH:"+name_match+"\t"
+puts "LOC_MATCH2:"+loc_match_city_full[0][4..-8] +":"+ loc_match_country_full[0][7..-7] +":"
+puts"URL:"+url_thematch
 #+ close the browser and release its resources
 driver.quit
 end
