@@ -13,6 +13,7 @@ options = Selenium::WebDriver::Chrome::Options.new
 
 File.open("clutchsyf.txt", "r") do |file_handle|
 file_handle.each_line do |line|
+puts "=================================================="
 driver = Selenium::WebDriver.for :chrome, options: options
 
 
@@ -31,6 +32,28 @@ loc_match2 = html.match(/profile-modal--list\">(\s*<li>(.*\w*)*)+/)
 if(loc_match2!=nil and loc_match2[0] != nil)
 loc_match_city_full = loc_match2[0].match(/<li>.*<span>/)
 loc_match_country_full = loc_match2[0].match(/span.*span/)
+#puts "Items:"
+item = loc_match2.to_a[0]
+    #puts "Item: ========"+item+"========" #item jest ok, trzeba teraz sparsować
+    thematch = item.scan(/li>.*span/)
+    someval = thematch
+    puts "Generating locations list:"
+    for item in someval
+	puts "JUPI!"+item[3..-7].split("span").join("PLUM")+"ENDJUPI"
+	end
+
+    # if(item!=nil && item!="")
+    # val1 = item.match(/<li>.*<span>/)
+    #     if(val1!=nil)
+    #         puts "\tcity:"+val1[0]
+    #     end
+    # end
+    # val2 = item.match(/span.*span/)
+    # if(val2!=nil)
+    #     puts "\tcountry"+val2[0]
+
+    # end
+#puts "Match!"+loc_match2.to_a
 end
 #if(loc_match_city_full[0] != nil)
 #puts "CITY_MATCH:"+loc_match_city_full[0][4..-8]+"+"
