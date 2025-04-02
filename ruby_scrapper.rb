@@ -1,8 +1,13 @@
 #!/usr/bin/env ruby
 
 require "selenium-webdriver"
-
+# USAGE:
+# put clutch profile addresses to clutchsyf.txt file (line by line)
+# set the is_windows variable below (WSL => true, Mac => false)
 # call sudo gem install selenium-webdriver before running
+# output on MacOS is ready to copy to doc, on Windows you have to create a .csv and open it with Excel or OpenOfficeCalc (; separator) and then you can copy from there
+
+iswindows = true
 
 # define the browser options
 options = Selenium::WebDriver::Chrome::Options.new
@@ -33,7 +38,9 @@ url_thematch = html.match(/.*sameAs.*/)[0].split("content=\"")[1][0...-2]
 
 name_match = html.match(/og:title\" content=\"[A-Za-z\-0-9].*"/)[0][19..-2]
 
-puts name_match+"\t"+loc_thematch+"\t"+url_thematch
+separator = (iswindows==true)?(";"):("\t")
+
+puts name_match+separator+loc_thematch+separator+url_thematch
 # close the browser and release its resources
 driver.quit
 end
