@@ -44,9 +44,11 @@ url_thematch = html.match(/.*sameAs.*/)[0].split("content=\"")[1][0...-2]
 
 name_match = html.match(/og:title\" content=\"[A-Za-z\-0-9].*"/)[0][19..-2]
 
-puts "NAME_MATCH:"+name_match+"\t"
-puts "LOC_MATCH2:"+loc_match_city_full[0][4..-8] +":"+ loc_match_country_full[0][7..-7] +":"
-puts"URL:"+url_thematch
+#puts "NAME_MATCH:"+name_match+"\t"
+#puts "LOC_MATCH2:"+loc_match_city_full[0][4..-8] +":"+ loc_match_country_full[0][7..-7] +":"
+#puts"URL:"+url_thematch
+complete_place = loc_match_city_full[0][4..-8]+", "+loc_match_country_full[0][7..-7]
+puts name_match+"\t"+complete_place+"\t"+url_thematch
 #+ close the browser and release its resources
 driver.quit
 end
