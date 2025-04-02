@@ -6,6 +6,7 @@ require "selenium-webdriver"
 
 # define the browser options
 options = Selenium::WebDriver::Chrome::Options.new
+
 # to run Chrome in headless mode
 #options.add_argument("--headless") # comment out in development
 # create a driver instance to control Chrome
@@ -14,8 +15,9 @@ options = Selenium::WebDriver::Chrome::Options.new
 File.open("clutchsyf.txt", "r") do |file_handle|
 file_handle.each_line do |line|
 driver = Selenium::WebDriver.for :chrome, options: options
-
-
+driver.manage.timeouts.implicit_wait = 20
+driver.manage.timeouts.script_timeout = 20
+driver.manage.timeouts.page_load = 20
 # connect to the target page
 driver.navigate.to line
 
