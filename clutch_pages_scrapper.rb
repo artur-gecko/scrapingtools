@@ -2,12 +2,12 @@
 
 require "selenium-webdriver"
 # USAGE:
-# put clutch profile addresses to clutchsyf.txt file (line by line)
+# put clutch profile addresses to config_files/clutch_addresses.txt file (line by line)
 # set the is_windows variable below (WSL => true, Mac => false)
 # call sudo gem install selenium-webdriver before running
 # output on MacOS is ready to copy to doc, on Windows you have to create a .csv and open it with Excel or OpenOfficeCalc (; separator) and then you can copy from there
 
-iswindows = true
+iswindows = false
 
 # define the browser options
 options = Selenium::WebDriver::Chrome::Options.new
@@ -17,7 +17,7 @@ options = Selenium::WebDriver::Chrome::Options.new
 # create a driver instance to control Chrome
 # with the specified options
 
-File.open("clutchsyf.txt", "r") do |file_handle|
+File.open("config_files/clutch_addresses.txt", "r") do |file_handle|
 file_handle.each_line do |line|
 driver = Selenium::WebDriver.for :chrome, options: options
 driver.manage.timeouts.implicit_wait = 20
@@ -30,13 +30,23 @@ driver.navigate.to line
 # and print it
 html = driver.page_source
 #puts html
+begin
 loc_thematch = html.match(/locality.*/)[0][19..-3]
+rescue NoMethodError
+loc_thematch = "CHECK_MANUALLY"
+end
 #puts loc_thematch
-
+begin
 url_thematch = html.match(/.*sameAs.*/)[0].split("content=\"")[1][0...-2]
+rescue NoMethodError
+url_thematch = "CHECK_MANUALLY"
+end
 #puts url_thematch
-
+begin
 name_match = html.match(/og:title\" content=\"[A-Za-z\-0-9].*"/)[0][19..-2]
+rescue NoMethodError
+name_match = "CHECK_MANUALLY"
+end
 
 separator = (iswindows==true)?(";"):("\t")
 

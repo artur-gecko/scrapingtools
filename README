@@ -21,7 +21,16 @@ Here is plugin:
 
 https://chromewebstore.google.com/detail/email-extractor/jdianbbpnakhcmfkcckaboohfgnngfcc
 
-2) Generating csv for MailMerge
+
+2) Completing the sheet (company name, location and webpage)
+
+When you have a list with clutch addresses (url), getting the companies' names, locations and webpages URLs can be automated.
+Put the list in config_files/clutch_addresses.txt and call the ./clutch_pages_scrapper.rb .
+
+Script requires chromium on the machine and selenium webdriver gem (https://rubygems.org/gems/selenium-webdriver).
+
+
+3) Generating csv for MailMerge
 
 Batch e-mailing is done using the MailMerge addon for Thunderbird.
 
@@ -32,7 +41,7 @@ Run ./create_a_csv_for_copied.rb - it uses the data in clipboard and generates .
 Companies' names are in the "LastName" column, so that they could be used with MailMerge. Details on how to use should appear when running the script.
 
 
-3) Run MailMerge with appropriate template.
+4) Run MailMerge with appropriate template.
 
 In "To" field put:
 {{Email}}
@@ -45,7 +54,7 @@ Click the "Mail Merge" icon in the message window, set the source to CSV, set fi
 
 Set Pause value to 1200 and select Random - this should give frequency of 1 e-mail per 10 minutes, on average: the delay is in seconds, and the random is ditributed uniformly, so the average value is 600s => 10 min.
 
-4) Other hacks
+5) Other hacks
 
 There is one problem with Thunderbird + MailMerge: as far as I understand, it can be only configured as one sender identity (address). And I haven't found any reasonable way to run mutiple instances of Thunderbird on MacOS.
 
