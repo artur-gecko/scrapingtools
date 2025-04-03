@@ -29,6 +29,8 @@ Put the list in config_files/clutch_addresses.txt and call the ./clutch_pages_sc
 
 Script requires chromium on the machine and selenium webdriver gem (https://rubygems.org/gems/selenium-webdriver).
 
+Set the iswindows flag in the script to true on Windows (WSL), false on Mac. On Mac the script output can be copied directly to the sheets, on Windows the values are separated by ";" (csv) - you have to save it as .csv, open in some Excel or Calc and then you can copy. Windows terminal has some problems with tabs.
+
 
 3) Generating csv for MailMerge
 
