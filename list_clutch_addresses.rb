@@ -8,7 +8,7 @@ else
   list_with_results = Array.new
   blacklist = Array.new
 
-  File.open("blacklist.txt").each_line do |line|
+  File.open("config_files/blacklist.txt").each_line do |line|
 	blacklist << (""+line).strip
   end
   File.open(filename).each_line do |line|
