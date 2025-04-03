@@ -17,6 +17,15 @@ options = Selenium::WebDriver::Chrome::Options.new
 # create a driver instance to control Chrome
 # with the specified options
 
+puts "VERY IMPORTANT!!!
+
+In case there are lot of missing data (CHECK_MANUALLY),
+
+try to run the script for a second time!!!
+
+Chrome cache is being generated and problems are avoided on the second run:
+There should be much less corrupted data.\n\n"
+
 File.open("config_files/clutch_addresses.txt", "r") do |file_handle|
 file_handle.each_line do |line|
 driver = Selenium::WebDriver.for :chrome, options: options
