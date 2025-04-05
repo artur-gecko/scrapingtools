@@ -1,0 +1,13 @@
+FirstName,LastName,Gender,Email
+,,,info@default-value.com
+,,,enquiries@jdd.agency
+,,,dynamics@evozon.com
+,,,hello@neverbland.com
+,,,contact@mangosoft.tech
+,,,info@aleph.engineering
+,,,info@busyrebel.io
+,,,contact@sunmait.com
+,,,office@soft-loft.eu
+,,,sales@brainstation-51.com
+,,,contact@softformance.com
+,,,office@theuppercode.com
