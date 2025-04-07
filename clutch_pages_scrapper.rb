@@ -37,6 +37,11 @@ end
 
 def goToAddressAndParse(address)
     options = Selenium::WebDriver::Chrome::Options.new
+    options.add_argument("--no--sandbox")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--disable-browser-side-navigation")
+    options.add_argument("--enable-automation")
     driver = Selenium::WebDriver.for :chrome, options: options
     driver.manage.timeouts.implicit_wait = 20
     driver.manage.timeouts.script_timeout = 20
